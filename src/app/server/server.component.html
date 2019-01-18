@@ -1,0 +1,31 @@
+<div [ngStyle]="status==='online'?{backgroundColor:'lightgreen'}:{backgroundColor:'pink'}">
+  <label>{{ serverName }}</label>
+  <input
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)"
+  />
+  <label>{{ serverName2 }}</label>
+  <input type="text" class="form-control" [(ngModel)]="serverName2"/>
+  <button class="btn btn-primary" (click)="addNewServer()">Add Server</button>
+  <button class="btn btn-success" (click)="toggleStatus()">
+    Toggle Status
+  </button>
+  <div *ngFor="let item of createRange(numberOfServers)">
+    <p>
+      Server ID is {{ serverId }} and status is {{ status.toUpperCase() }}.
+      Really it is {{ getServerStatus() }}
+    </p>
+  </div>
+  <div *ngIf="status == 'online'; else noServer">
+    Current Status: ONLINE
+  </div>
+  <ng-template #noServer>
+    <div class="bg-danger">Current Status: OFFLINE</div>
+  </ng-template>
+</div>
+<div [ngClass]="{serversuccess: status==='online'}">Server Success</div>
+<div [ngClass]="status==='offline' ? 'serverfails' : 'serversuccess'">Server Fails</div>
+<ul >
+    <li *ngFor="let item of servers; let i = index">ID: {{item.id}} / Name: {{item.name}} / {{i}}</li>
+</ul>

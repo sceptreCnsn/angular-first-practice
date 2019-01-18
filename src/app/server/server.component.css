@@ -1,0 +1,9 @@
+.serversuccess{
+    color:gold !important;
+    background-color: black !important;
+}
+
+.serverfails{
+    color:red;
+    background-color: blue !important;
+}
